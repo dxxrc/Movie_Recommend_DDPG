@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input.inputLine{
+                width:226px;
+                padding: .375rem .75rem;
+                border-radius: .25rem;
+                border: 1px solid #ced4da;
+        }
+        input.inputLine:focus{
+            border-style:solid;
+            border-color: #03a9f4;
+            box-shadow: 0 0 5px #03a9f4;
+        }
+    </style>
+</head>
+<body>
+<img src="https://m.media-amazon.com/images/M/MV5BMDU2ZWJlMjktMTRhMy00ZTA5LWEzNDgtYmNmZTEwZTViZWJkXkEyXkFqcGdeQXVyNDQ2OTk4MzI@._V1_UX182_CR0,0,182,268_AL_.jpg" alt="">
+
+<form action="http://127.0.0.1:8000/test/" method="get">
+    <button value="A" name="type">A</button>
+    <button value="B" name="type">A</button>
+</form>
+<img src="{% static 'images/poster_not_found.png' %}" alt="">
+<input class="inputLine" type="text" id="mobile" placeholder="请输入您的手机号">
+<input type="text">
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

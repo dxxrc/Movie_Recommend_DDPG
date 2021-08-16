@@ -1,0 +1,582 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- //for-mobile-apps -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'css/contactstyle.css' %}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'css/faqstyle.css' %}" type="text/css" media="all"/>
+    <link href="{% static 'css/single.css' %}" rel='stylesheet' type='text/css'/>
+    <link href="{% static 'css/medile.css' %}" rel='stylesheet' type='text/css'/>
+    <!-- banner-slider -->
+    <link href="{% static 'css/jquery.slidey.min.css' %}" rel="stylesheet">
+    <!-- //banner-slider -->
+    <!-- pop-up -->
+    <link href="{% static 'css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- //pop-up -->
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <!-- //js -->
+    <!-- banner-bottom-plugin -->
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" type="text/css" media="all">
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                items: 5,
+                itemsDesktop: [640, 4],
+                itemsDesktopSmall: [414, 3]
+
+            });
+
+        });
+    </script>
+    <!-- //banner-bottom-plugin -->
+    <!---<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>--->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
+    <style>
+        input.inputLine{
+            width:226px;
+            padding: .375rem .75rem;
+            border-radius: .25rem;
+            border: none;
+            text-align:center;
+        }
+        input.inputLine:focus{
+            text-align:center;
+            border-style:solid;
+            border-color: #03a9f4;
+            box-shadow: 0 0 5px #03a9f4;
+        }
+    </style>
+</head>
+
+<body>
+<!-- header -->
+<div class="header">
+    <div class="container">
+        <div class="w3layouts_logo">
+            <a href="http://127.0.0.1:8000/"><h1>One<span>Movies</span></h1></a>
+        </div>
+
+        <div class="w3l_sign_in_register">
+            <ul>
+                <table>
+                    <tr>
+                        <td width="80">
+                            <a href="#" data-toggle="modal" data-target="#userInfo">
+                                <img src="{{ head.user_photo }}" alt="" style="object-fit: cover;width: 60px;height: 60px;display: flex;border-radius: 50%;align-items: center;justify-content: center;overflow: hidden;">
+                            </a>
+                        </td>
+                        <td>
+                            <li><a href="#" data-toggle="modal" data-target="#myModal">{{ head.login_state }}</a></li>
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //header -->
+<!-- bootstrap-pop-up -->
+<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                登录/注册
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <section>
+                <div class="modal-body">
+                    <div class="w3_login_module">
+                        <div class="module form-module">
+                            <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                                <div class="tooltip">点击注册</div>
+                            </div>
+                            <div class="form">
+                                <h3>请登录</h3>
+                                <form action="http://127.0.0.1:8000/login/" method="post">{% csrf_token %}
+                                    <input type="text" name="Username" placeholder="用户名" required="">
+                                    <input type="password" name="Password" placeholder="密码" required="">
+                                    <input type="submit" value="登录">
+                                    {% if messages %}
+                                        <script>
+                                            {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                            {% endfor %}
+                                        </script>
+                                    {% endif %}
+                                </form>
+                            </div>
+                            <div class="form">
+                                <h3>注册账号</h3>
+                                <form action="http://127.0.0.1:8000/register/" method="post">{% csrf_token %}
+                                    <input type="text" name="Username" placeholder="用户名" required="">
+                                    <input type="password" name="Password" placeholder="密码" required="">
+                                    <input type="email" name="Email" placeholder="电子邮件" required="">
+                                    <input type="text" name="Phone" placeholder="联系电话" required="">
+                                    <input type="submit" value="注册">
+                                    {% if messages %}
+                                        <script>
+                                            {% for msg in messages %}
+                                                alert('{{ msg.message }}');
+                                            {% endfor %}
+                                        </script>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal video-modal fade" id="userInfo" tabindex="-1" role="dialog" aria-labelledby="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                {{ head.user_info }}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <section>
+                <div class="modal-body">
+                    <form action="http://127.0.0.1:8000/modify/" method="post">{% csrf_token %}
+                        <div align="center" style="margin: 15px">
+                            <img src="{{ head.user_photo }}" alt="" style="object-fit: cover;width: 90px;height: 90px;display: flex;border-radius: 50%;align-items: center;justify-content: center;overflow: hidden;">
+                        </div>
+                        <table border="1" style="border-collapse: collapse;margin: 0 auto;">
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">用户名：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_name" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_name }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">密码：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="pwd" type="text" class="inputLine" maxlength="20" width="500" placeholder="******">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">性别：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_gender" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_gender }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">年龄：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_age" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_age }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">职业：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_occupation" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_occupation }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">联系电话：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_phone" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_phone }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">电子邮件：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_email" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_email }}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="center" width="200">
+                                    <p style="font-size: 17px">邮政编码：</p>
+                                </td>
+                                <td align="center" valign="center" width="300" style="font-size: 17px">
+                                    <input name="user_zip" type="text" class="inputLine" maxlength="20" width="500" placeholder="{{ head.user_zip }}">
+                                </td>
+                            </tr>
+                        </table>
+                        <div align="center" style="margin: 30px">
+                            <button style="transition: .5s ease-in;-webkit-transition: .5s ease-in;color: #fff;display: inline-block;text-transform: uppercase;text-decoration: none;background: #FF8D1B;text-align: center;padding: 6px 30px;font-weight: bold;">
+                                修改信息
+                            </button>
+                        </div>
+                        {% if messages %}
+                            <script>
+                                {% for msg in messages %}
+                                    alert('{{ msg.message }}');
+                                {% endfor %}
+                            </script>
+                        {% endif %}
+                    </form>
+                    <form action="http://127.0.0.1:8000/logout/">
+                        <div align="center">
+                            <button style="transition: .5s ease-in;-webkit-transition: .5s ease-in;color: #fff;display: inline-block;text-transform: uppercase;text-decoration: none;background: #FF8D1B;text-align: center;padding: 6px 30px;font-weight: bold;">
+                                退出登录
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script>
+    $('.toggle').click(function () {
+        // Switches the Icon
+        $(this).children('i').toggleClass('fa-pencil');
+        // Switches the forms
+        $('.form').animate({
+            height: "toggle",
+            'padding-top': 'toggle',
+            'padding-bottom': 'toggle',
+            opacity: "toggle"
+        }, "slow");
+    });
+</script>
+<!-- //bootstrap-pop-up -->
+<!-- nav -->
+<div class="movies_nav">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="navbar-header navbar-left">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <nav>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="http://127.0.0.1:8000/">电影推荐</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">电影类型检索<b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-3">
+                                <li>
+                                    <form action="http://127.0.0.1:8000/genres/" method="get">
+                                        <div class="col-sm-4">
+                                            <ul class="multi-column-dropdown">
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres">
+                                                        <button value="Action" name="genre" style="border: none;background: white">Action</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Adventure" name="genre" style="border: none;background: white">Adventure</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Animation" name="genre" style="border: none;background: white">Animation</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Children's" name="genre" style="border: none;background: white">Children's</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Comedy" name="genre" style="border: none;background: white">Comedy</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Crime" name="genre" style="border: none;background: white">Crime</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Documentary" name="genre" style="border: none;background: white">Documentary</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Drama" name="genre" style="border: none;background: white">Drama</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Fantasy" name="genre" style="border: none;background: white">Fantasy</button>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <ul class="multi-column-dropdown">
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Film-Noir" name="genre" style="border: none;background: white">Film-Noir</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Horror" name="genre" style="border: none;background: white">Horror</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Musical" name="genre" style="border: none;background: white">Musical</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Mystery" name="genre" style="border: none;background: white">Mystery</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Romance" name="genre" style="border: none;background: white">Romance</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Sci-Fi" name="genre" style="border: none;background: white">Sci-Fi</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Thriller" name="genre" style="border: none;background: white">Thriller</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="War" name="genre" style="border: none;background: white">War</button>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://127.0.0.1:8000/genres/">
+                                                        <button value="Western" name="genre" style="border: none;background: white">Western</button>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="list">首字母检索</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- //nav -->
+<!-- banner -->
+<div id="slidey" style="display:none;">
+    <ul>
+        <li><img src="{% static 'images/xskdjs.jpg' %}" alt=" ">
+            <p class='title'>肖申克的救赎</p>
+            <p class='description'>讲述银行家安迪，被当作杀害妻子的凶手送上法庭。妻子的不忠、律师的奸诈、法官的误判、狱警的凶暴、典狱长的
+                贪心与卑鄙，将正处在而立之年的安迪一下子从人生的巅峰推向了世间地狱。</p></li>
+        <li><img src="{% static 'images/gfxm.jpg' %}" alt=" ">
+            <p class='title'>功夫熊猫</p>
+            <p class='description'>讲述了一只笨拙的熊猫立志成为武林高手的故事。</p></li>
+        <li><img src="{% static 'images/ttnkh.jpg' %}" alt=" ">
+            <p class='title'>泰坦尼克号</p>
+            <p class='description'>讲述了处于不同阶层的两个人穷画家杰克和贵族女露丝抛弃世俗的偏见坠入爱河，最终杰克把生命的机会让给了露
+                丝的感人故事。</p></li>
+        <li><img src="{% static 'images/afd.jpg' %}" alt=" ">
+            <p class='title'>阿凡达</p>
+            <p class='description'>讲述人类穿上阿凡达的躯壳，飞到遥远的星球潘多拉开采资源。受伤后以轮椅代步的前海军杰克，自愿接受实验并
+                以他的阿凡达来到潘多拉。在结识了当地纳美族人公主...</p></li>
+        <li><img src="{% static 'images/dmkj.jpg' %}" alt=" ">
+            <p class='title'>盗梦空间</p>
+            <p class='description'>讲述由莱昂纳多·迪卡普里奥扮演的造梦师，带领约瑟夫·高登-莱维特、艾伦·佩吉扮演的特工团队，进入他人梦境，
+                从他人的潜意识中盗取机密，并重塑他人梦境的故事。</p></li>
+        <li><img src="{% static 'images/agzz.jpg' %}" alt=" ">
+            <p class='title'>阿甘正传</p>
+            <p class='description'>描绘了先天智障的小镇男孩福瑞斯特·甘自强不息，最终“傻人有傻福”地得到上天眷顾，在多个领域创造奇迹的
+                励志故事。</p></li>
+    </ul>
+</div>
+<script src="{% static 'js/jquery.slidey.js' %}"></script>
+<script src="{% static 'js/jquery.dotdotdot.min.js' %}"></script>
+<script type="text/javascript">
+    $("#slidey").slidey({
+        interval: 8000,
+        listCount: 5,
+        autoplay: false,
+        showList: true
+    });
+    $(".slidey-list-description").dotdotdot();
+</script>
+<!-- //banner -->
+<!-- banner-bottom -->
+
+<!-- //banner-bottom -->
+<!-- general -->
+<div class="general">
+    <h4 class="latest-text w3_latest_text" >为您推荐</h4>
+    <div class="container">
+        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                    <div class="w3_agile_featured_movies">
+
+                        {% for movie in head.movies %}
+                            <div class="col-md-2 w3l-movie-gride-agile">
+                                <form action="http://127.0.0.1:8000/single" method="get">
+                                    <button name="movie_id" value="{{ movie.id }}" style="border: none;background: white">
+                                        <a href="http://127.0.0.1:8000/single" class="hvr-shutter-out-horizontal">
+                                            <img src="{{ movie.poster }}" title="album-name" class="img-responsive" alt=" " />
+                                            <div class="w3l-action-icon" ><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                        </a>
+                                    </button>
+                                </form>
+                            <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                <div class="w3l-movie-text">
+                                    <h6><a href="single.html">{{ movie.name }}</a></h6>
+                                </div>
+                            </div>
+                            <div class="ribben">
+                                <p>NEW</p>
+                            </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //general -->
+<!-- Latest-tv-series -->
+<!-- pop-up-box -->
+<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+<!--//pop-up-box -->
+<div id="small-dialog" class="mfp-hide">
+    <!---<iframe src="https://player.vimeo.com/video/164819130?title=0&byline=0"></iframe>--->
+</div>
+<div id="small-dialog1" class="mfp-hide">
+    <!---<iframe src="https://player.vimeo.com/video/148284736"></iframe>--->
+</div>
+<div id="small-dialog2" class="mfp-hide">
+    <!---<iframe src="https://player.vimeo.com/video/165197924?color=ffffff&title=0&byline=0&portrait=0"></iframe>--->
+</div>
+<script>
+    $(document).ready(function () {
+        $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+</script>
+<!-- //Latest-tv-series -->
+<!-- footer -->
+<div class="footer">
+    <div class="container">
+        <div class="w3ls_footer_grid">
+            <div class="col-md-6 w3ls_footer_grid_right">
+                <a href="http://127.0.0.1:8000/"><h2>One<span>Movies</span></h2></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //footer -->
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+</script>
+<!-- //Bootstrap Core JavaScript -->
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+</body>
+</html>
+
+

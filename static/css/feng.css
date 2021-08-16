@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid #000000;*/
+    background: linear-gradient(to right,#999999,#6c6c6c,#999999);
+    overflow: hidden;
+}
+
+
+
+.container .wrapper{
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    /*border: 2px solid blue;*/
+}
+
+.container .wrapper h1{
+    height: 50px;
+    line-height: 50px;
+    /*border: 1px solid black;*/
+    font-weight: bold;
+    color: #494949;
+    font-size: 26px;
+}
+
+.container .wrapper .main-left{
+    width: 70%;
+    height: 90%;
+    /*border: 1px solid brown;*/
+    float: left;
+}
+
+.container .wrapper .main-left .introduce{
+    width: 100%;
+    height: 300px;
+}
+
+.container .wrapper .main-left .introduce .introduce-first{
+    width: 30%;
+    height: 200px;
+    float: left;
+}
+
+.container .wrapper .main-left .introduce .introduce-first img{
+    margin-top: 10px;
+    height: 200px;
+}
+
+.container .wrapper .main-left .introduce .introduce-two{
+  width: 70%;
+   float: left;
+    height: 300px;
+}
+
+.container .wrapper .main-left .introduce .introduce-two .name{
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #000000;
+    font-size: 13px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.container .wrapper .main-left .introduce .introduce-two .answer{
+    color: #333333;
+    font-size: 12px;
+}
+
+.container .wrapper .main-left .explain{
+    width: 100%;
+    height: 210px;
+    /*border: 2px solid #1cff7b;*/
+}
+
+.container .wrapper .main-left .explain h2{
+    color: #494949;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.container .wrapper .main-left .explain p{
+    font-size: 13px;
+    width: 700px;
+    text-indent: 2em;
+    line-height: 30px;
+}
+
+.container .wrapper .main-right{
+    width: 29%;
+    height: 90%;
+    /*border: 1px solid blue;*/
+    float: left;
+    position: relative;
+}
+
+.container .wrapper .main-right h2{
+    color: #494949;
+    font-size: 16px;
+    margin: 10px 0;
+    font-style: normal;
+    font-weight: normal;
+}
+.container .wrapper .main-right .right-top{
+    width: 300px;
+    height: 420px;
+    /*border: 2px solid brown;*/
+}
+
+.container .wrapper .main-right img{
+    width: 200px;
+    opacity: 0.85;
+}
+
+.container .wrapper .main-right .pic1{
+    position: absolute;
+    left: 3px;
+}
+
+.container .wrapper .main-right .pic2{
+    position: absolute;
+    top: 110px;
+    left: 100px;
+}
+
+.container .wrapper .main-right .pic3{
+    position: absolute;
+    left: 4px;
+    top: 200px;
+}
+
+.container .wrapper .main-right .pic4{
+    position: absolute;
+    left: 100px;
+    top: 280px;
+}
+
+.container .wrapper .main-right .right-foot{
+    width: 300px;
+    height: 20px;
+    text-align: right;
+}
+.container .wrapper .main-right .right-foot span{
+    color: #ffe4db;
+    font-size: 12px;
+}
